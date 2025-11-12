@@ -15,14 +15,33 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased bg-black;
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Keyframes */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes bgPulse {
+  0% { filter: hue-rotate(0deg) saturate(1); }
+  50% { filter: hue-rotate(20deg) saturate(1.15); }
+  100% { filter: hue-rotate(0deg) saturate(1); }
+}
+
+/* Utilities */
 @layer utilities {
   .animate-in {
     animation-name: animateIn;
@@ -43,4 +62,6 @@
     --tw-exit-translate-x: initial;
     --tw-exit-translate-y: initial;
   }
+
+  .animate-caret { animation: caret 900ms steps(1, end) infinite; }
 }
